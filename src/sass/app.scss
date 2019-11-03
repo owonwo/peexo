@@ -1,0 +1,145 @@
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    --primary-color-1: rgba(221, 156, 41);
+    --primary-color: rgba(247, 181, 50);
+    --light-primary: #FEFBF3;
+
+    font-size: calc(1vmin * 12px);
+    font-family: 'Montserrat';
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+$colors: (primary: rgba(247, 181, 50),
+    primary-100: #FEFBF3,
+);
+
+@each $var,
+$index in $colors {
+    .text-#{$var} {
+        color: map-get($colors, $var);
+    }
+
+    .bg-#{$var} {
+        background-color: map-get($colors, $var);
+    }
+}
+
+header nav {
+    font-size: .9rem;
+
+    ul {
+        justify-content: flex-end;
+    }
+
+    li {
+        display: block;
+        padding: 20px;
+    }
+}
+
+.cover-image {
+    height: 100vh;
+    max-height: calc(100vh - 300px);
+    background: url('../assets/cover-image.png') no-repeat center 25% / cover;
+}
+
+.profile-tab {
+    background-color: var(--primary-color-1);
+
+    img {
+        background: #333;
+        border: none;
+    }
+}
+
+.profile-nav {
+
+    li {
+        display: block;
+        color: white;
+
+        &.active {
+            background-color: rgb(77, 77, 77);
+        }
+
+        a {
+            color: inherit;
+            display: block;
+            padding: 20px;
+        }
+    }
+}
+
+.calendar-section {
+    .calendar-card {
+        width: 280px;
+        height: 280px;
+        margin: 15px;
+        border: solid 1px #777;
+        background-color: white;
+    }
+}
+
+.calendar-nav {
+    display: inline-flex;
+    padding: 30px 0;
+
+    >* {
+        width: 30px;
+        height: 30px;
+        border: solid 1px black;
+        transform: rotate(45deg) scale(.7);
+
+        &:nth-child(1) {
+            border-color: transparent transparent black black;
+        }
+
+        &:nth-child(3) {
+            border-color: black black transparent transparent;
+        }
+
+        &:nth-child(2) {
+            border-radius: 30px;
+            margin: 0 15px;
+            background-color: #333;
+            transform: scale(1);
+        }
+    }
+}
+
+.verified {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    background-image: url(/assets/verified.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
+
+footer {
+    line-height: 1.88;
+
+    .sublinks {
+        >* {
+            margin: 2rem;
+        }
+
+        h4 {
+            font-weight: bold;
+        }
+    }
+
+    li {
+        opacity: .8;
+        display: block;
+        font-size: .8rem;
+    }
+}

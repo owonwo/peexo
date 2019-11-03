@@ -1,0 +1,18 @@
+{
+    "root": true,
+    "env": {
+        "node": true
+    },
+    "extends": [
+        "plugin:vue/essential",
+        "@vue/airbnb"
+    ],
+    "rules": {
+        "semi": "off",
+        "max-len": [0, "error"],
+        "quotes": "off"
+    },
+    "parserOptions": {
+        "parser": "babel-eslint"
+    }
+}

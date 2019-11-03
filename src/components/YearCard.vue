@@ -14,21 +14,16 @@
     >
       <CalendarCard
         class="container__month"
-        v-for="n in 12"
-        :key="`month-${n}`"
+        v-for="n in 3"
+        :key="`month-${getMonth(n)}`"
         :year="activeYear"
-        :month="n"
-        :activeDates="month[n]"
+        :month="getMonth(n)"
+        :activeDates="month[getMonth(n)]"
         :activeClass="activeClass"
         @toggleDate="toggleDate"
         :lang="lang"
         :prefixClass="prefixClass"
       />
-      <div class="container__month p-0"></div>
-      <div class="container__month p-0"></div>
-      <div class="container__month p-0"></div>
-      <div class="container__month p-0"></div>
-      <div class="container__month p-0"></div>
     </div>
   </div>
 </template>
@@ -37,12 +32,14 @@
 import dayjs from "dayjs";
 import CalendarCard from "./CalendarCard.vue";
 
+window.dayjs = dayjs;
+
 export default {
   name: "year-calendar",
   props: {
     showYearSelector: {
       type: Boolean,
-      default: () => true
+      default: false
     },
     activeDates: {
       type: Array,
@@ -145,6 +142,13 @@ export default {
     }
   },
   methods: {
+    getMonth(n) {
+      const month = dayjs().month() + n
+      if (month > 12) {
+        return 1;
+      }
+      return month;
+    },
     changeYear(idx) {
       this.activeYear = idx + this.activeYear - 3;
     },
@@ -199,9 +203,6 @@ export default {
   min-width: 0;
   position: relative;
   text-decoration: none;
-  box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
-    0 1px 3px 0 rgba(0, 0, 0, 0.12);
-  background-color: #f6f6f3;
 
   .container__year {
     user-select: none;
@@ -243,11 +244,11 @@ export default {
     flex-wrap: wrap;
     display: flex;
     padding: 15px;
+    justify-content: center;
   }
 
   .container__month {
     padding: 8px;
-    flex: 16.66%;
   }
 
   .p-0 {

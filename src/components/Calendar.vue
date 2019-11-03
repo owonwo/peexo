@@ -5,11 +5,6 @@
       </section>
 
       <div class="text-center">
-        <!-- <div class="calendar-nav inline-flex">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div> -->
         <year-card v-model="year"
             :activeDates.sync="activeDates"
             @toggleDate="toggleDate"
